@@ -27,6 +27,7 @@ website/
 exampleTypescript/*.js
 exampleTypescript/node_modules/
 exampleTypescript/tmp/
+node_modules/
 
 # Development files
 
