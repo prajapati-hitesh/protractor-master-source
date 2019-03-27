@@ -227,6 +227,31 @@ export class ProtractorBy extends WebdriverBy {
   }
 
   /**
+   * Find a Protractor Name.
+   *
+   * @view
+   * <mat-select protractor-name='country'>Save</mat-select>
+   *
+   * @example
+   * element(by.protractorName('country'));
+   *
+   * @param {string} attributeValue
+   * @returns {ProtractorLocator} location strategy
+   */
+  protractorName(attributeValue: string): ProtractorLocator {
+    return {
+      findElementsOverride: async(driver: WebDriver, using: WebElement, rootSelector: string):
+          Promise<WebElement[]> => {
+            return driver.findElements(
+                By.js(clientSideScripts.findByProtractorName, attributeValue, using, rootSelector));
+          },
+      toString: (): string => {
+        return 'by.protractorName("' + attributeValue + '")';
+      }
+    };
+  }
+
+  /**
    * Find a button by partial text.
    *
    * @view
